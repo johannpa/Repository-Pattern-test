@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Repository_Pattern_test.Services.WeatherForecastService;
 
 namespace Repository_Pattern_test.Controllers
 {
@@ -6,13 +7,14 @@ namespace Repository_Pattern_test.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IWeatherForecastService _weatherForecastService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherForecastService weatherForecastService)
         {
             _logger = logger;
+            _weatherForecastService = weatherForecastService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
